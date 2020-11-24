@@ -15,9 +15,6 @@ NavigationToolbar2Tk)
 from graph_func import *
 global edit
 change = 0
-
-
-
 root = tk.ThemedTk()
 root.get_themes()# Returns a list of all themes that can be set
 root.set_theme("radiance")
@@ -30,20 +27,215 @@ entries = []
 
 
 
-valuesName3 = ["nz", "nm", 
-	"Length (Le)", "Bulk density of porous media (𝜌𝑏)", "Run time (Tmax)", "Pulse time (Tp)", "∆𝑡", "∆𝑥",
-	"Porosity of the macropore region (𝜃𝑓)", "Porosity of the mesopore region (𝜃𝑠)", "Porosity of the micropore region (𝜃𝑖𝑚)",
-	"Instantaneous sorption fraction in macropore region (𝐹𝑓)", "Instantaneous sorption fraction in mesopore region (𝐹𝑠)",
-	"Instantaneous sorption fraction in micropore region (𝐹𝑖𝑚)", "Fraction of sorption site available for macropore region (𝑓𝑓)", 
-	"Fraction of sorption site available for mesopore region (𝑓𝑠)",	"Fraction of sorption site available for immobile region (𝑓𝑖𝑚)",
-	"Equilibrium sorption coefficient in macropore region (𝐾𝑓)", "Equilibrium sorption coefficient in mesopore region (𝐾𝑠)", 
-	"Equilibrium sorption coefficient in micropore region (𝐾𝑖𝑚)", "Rate-limited sorbed coefficient in macropore region (𝑘𝑓)", 
-	"Rate-limited sorbed coefficient in mesopore region (𝑘𝑠)", "Rate-limited sorbed coefficient in micropore region (𝑘𝑖𝑚)"]
-valuesName1 = ["Mesopore seepage velocity (𝑞𝑠 )", "Macropore seepage velocity (𝑞𝑓 )",
-	"Solute mass transfer rate b/w meso-micropore (ωim)", "Solute mass transfer rate b/w meso-macropore (ωsf)", 
-	"Dispersivity (å𝐿 )", "No. of observation time steps", "Experimental data (Input from txt file or excel copy paste)"]
-valuesName2 = ["No. of observation distances to print", "Observation distances (According to No.of observation distances)", 
-	"Time steps (Input from txt file or excel copy paste)"]
+valuesName3 = [
+	"nz", 
+	"nm", 
+	"Length (Le)", 
+	"Bulk density of porous media (𝜌𝑏)", 
+	"Run time (Tmax)", 
+	"Pulse time (Tp)", 
+	"∆𝑡", 
+	"∆𝑥",
+	"Porosity of the macropore region (𝜃𝑓)", 
+	"Porosity of the mesopore region (𝜃𝑠)", 
+	"Porosity of the micropore region (𝜃𝑖𝑚)",
+	"Instantaneous sorption fraction in macropore region (𝐹𝑓)", 
+	"Instantaneous sorption fraction in mesopore region (𝐹𝑠)",
+	"Instantaneous sorption fraction in micropore region (𝐹𝑖𝑚)", 
+	"Fraction of sorption site available for macropore region (𝑓𝑓)", 
+	"Fraction of sorption site available for mesopore region (𝑓𝑠)",	
+	"Fraction of sorption site available for immobile region (𝑓𝑖𝑚)",
+	"Equilibrium sorption coefficient in macropore region (𝐾𝑓)", 
+	"Equilibrium sorption coefficient in mesopore region (𝐾𝑠)", 
+	"Equilibrium sorption coefficient in micropore region (𝐾𝑖𝑚)", 
+	"Rate-limited sorbed coefficient in macropore region (𝑘𝑓)", 
+	"Rate-limited sorbed coefficient in mesopore region (𝑘𝑠)", 
+	"Rate-limited sorbed coefficient in micropore region (𝑘𝑖𝑚)"
+]
+
+valuesName1 = [
+	"Mesopore seepage velocity (𝑞𝑠 )", 
+	"Macropore seepage velocity (𝑞𝑓 )",
+	"Solute mass transfer rate b/w meso-micropore (ωim)", 
+	"Solute mass transfer rate b/w meso-macropore (ωsf)", 
+	"Dispersivity (å𝐿 )", 
+	"No. of observation time steps", 
+	"Experimental data (Input from txt file or excel copy paste)"
+]
+
+valuesName2 = [
+	"No. of observation distances to print", 
+	"Observation distances (According to No.of observation distances)", 
+	"Time steps (Input from txt file or excel copy paste)"
+]
+
+valuesNamesArr = [valuesName1, valuesName2, valuesName3]
+
+
+
+
+
+
+
+
+
+defaultValuesADE = [
+	"Porosity of the mesopore region (𝜃𝑠)", 
+	"Porosity of the micropore region (𝜃𝑖𝑚)",
+	"Instantaneous sorption fraction in macropore region (𝐹𝑓)", 
+	"Instantaneous sorption fraction in mesopore region (𝐹𝑠)",
+	"Instantaneous sorption fraction in micropore region (𝐹𝑖𝑚)", 
+	"Fraction of sorption site available for macropore region (𝑓𝑓)", 
+	"Fraction of sorption site available for mesopore region (𝑓𝑠)",	
+	"Fraction of sorption site available for immobile region (𝑓𝑖𝑚)",
+	"Equilibrium sorption coefficient in mesopore region (𝐾𝑠)", 
+	"Equilibrium sorption coefficient in micropore region (𝐾𝑖𝑚)", 
+	"Rate-limited sorbed coefficient in macropore region (𝑘𝑓)", 
+	"Rate-limited sorbed coefficient in mesopore region (𝑘𝑠)", 
+	"Rate-limited sorbed coefficient in micropore region (𝑘𝑖𝑚)", 
+	"Mesopore seepage velocity (𝑞𝑠 )", 
+	"Solute mass transfer rate b/w meso-micropore (ωim)", 
+	"Solute mass transfer rate b/w meso-macropore (ωsf)"
+]
+
+
+askValuesADE = [
+	"Porosity of the macropore region (𝜃𝑓)", 
+	"Equilibrium sorption coefficient in macropore region (𝐾𝑓)", 
+	"Macropore seepage velocity (𝑞𝑓 )",
+	"Dispersivity (å𝐿 )"
+]
+
+
+
+defaultValuesMIM = [
+	"Porosity of the mesopore region (𝜃𝑠)", 
+	"Porosity of the micropore region (𝜃𝑖𝑚)",
+	"Instantaneous sorption fraction in micropore region (𝐹𝑖𝑚)", 
+	"Fraction of sorption site available for immobile region (𝑓𝑖𝑚)",
+	"Equilibrium sorption coefficient in micropore region (𝐾𝑖𝑚)", 
+	"Rate-limited sorbed coefficient in macropore region (𝑘𝑓)", 
+	"Rate-limited sorbed coefficient in mesopore region (𝑘𝑠)", 
+	"Rate-limited sorbed coefficient in micropore region (𝑘𝑖𝑚)", 
+	"Mesopore seepage velocity (𝑞𝑠 )", 
+	"Solute mass transfer rate b/w meso-micropore (ωim)"
+]
+
+
+
+askValuesMIM = [
+	"Porosity of the macropore region (𝜃𝑓)", 
+	"Instantaneous sorption fraction in macropore region (𝐹𝑓)", 
+	"Instantaneous sorption fraction in mesopore region (𝐹𝑠)",
+	"Fraction of sorption site available for macropore region (𝑓𝑓)", 
+	"Fraction of sorption site available for mesopore region (𝑓𝑠)",	
+	"Equilibrium sorption coefficient in macropore region (𝐾𝑓)", 
+	"Equilibrium sorption coefficient in mesopore region (𝐾𝑠)", 
+	"Macropore seepage velocity (𝑞𝑓 )",
+	"Solute mass transfer rate b/w meso-macropore (ωsf)", 
+	"Dispersivity (å𝐿 )", 
+]
+
+
+
+defaultValuesMPNE = [
+	"Porosity of the micropore region (𝜃𝑖𝑚)",
+	"Instantaneous sorption fraction in micropore region (𝐹𝑖𝑚)", 
+	"Fraction of sorption site available for immobile region (𝑓𝑖𝑚)",
+	"Equilibrium sorption coefficient in micropore region (𝐾𝑖𝑚)", 
+	"Rate-limited sorbed coefficient in micropore region (𝑘𝑖𝑚)", 
+	"Solute mass transfer rate b/w meso-micropore (ωim)", 
+]
+
+
+
+
+askValuesMPNE = [
+	"Porosity of the macropore region (𝜃𝑓)", 
+	"Porosity of the mesopore region (𝜃𝑠)", 
+	"Instantaneous sorption fraction in macropore region (𝐹𝑓)", 
+	"Instantaneous sorption fraction in mesopore region (𝐹𝑠)",
+	"Fraction of sorption site available for macropore region (𝑓𝑓)", 
+	"Fraction of sorption site available for mesopore region (𝑓𝑠)",	
+	"Equilibrium sorption coefficient in macropore region (𝐾𝑓)", 
+	"Equilibrium sorption coefficient in mesopore region (𝐾𝑠)", 
+	"Rate-limited sorbed coefficient in macropore region (𝑘𝑓)", 
+	"Rate-limited sorbed coefficient in mesopore region (𝑘𝑠)", 
+	"Mesopore seepage velocity (𝑞𝑠 )", 
+	"Macropore seepage velocity (𝑞𝑓 )",
+	"Solute mass transfer rate b/w meso-macropore (ωsf)", 
+	"Dispersivity (å𝐿 )"
+]
+
+
+
+
+defaultValuesDADE = [
+	"Porosity of the micropore region (𝜃𝑖𝑚)",
+	"Instantaneous sorption fraction in macropore region (𝐹𝑓)", 
+	"Instantaneous sorption fraction in mesopore region (𝐹𝑠)",
+	"Instantaneous sorption fraction in micropore region (𝐹𝑖𝑚)", 
+	"Fraction of sorption site available for macropore region (𝑓𝑓)", 
+	"Fraction of sorption site available for mesopore region (𝑓𝑠)",	
+	"Fraction of sorption site available for immobile region (𝑓𝑖𝑚)",
+	"Equilibrium sorption coefficient in macropore region (𝐾𝑓)", 
+	"Equilibrium sorption coefficient in mesopore region (𝐾𝑠)", 
+	"Equilibrium sorption coefficient in micropore region (𝐾𝑖𝑚)", 
+	"Rate-limited sorbed coefficient in macropore region (𝑘𝑓)", 
+	"Rate-limited sorbed coefficient in mesopore region (𝑘𝑠)", 
+	"Rate-limited sorbed coefficient in micropore region (𝑘𝑖𝑚)", 
+	"Solute mass transfer rate b/w meso-micropore (ωim)"
+]
+
+
+
+
+askValuesDADE = [
+	"Porosity of the macropore region (𝜃𝑓)", 
+	"Porosity of the mesopore region (𝜃𝑠)", 
+	"Mesopore seepage velocity (𝑞𝑠 )", 
+	"Macropore seepage velocity (𝑞𝑓 )",
+	"Solute mass transfer rate b/w meso-macropore (ωsf)", 
+	"Dispersivity (å𝐿 )"
+]
+
+
+
+
+defaultValuesALL = [
+	"Porosity of the macropore region (𝜃𝑓)", 
+	"Porosity of the mesopore region (𝜃𝑠)", 
+	"Porosity of the micropore region (𝜃𝑖𝑚)",
+	"Instantaneous sorption fraction in macropore region (𝐹𝑓)", 
+	"Instantaneous sorption fraction in mesopore region (𝐹𝑠)",
+	"Instantaneous sorption fraction in micropore region (𝐹𝑖𝑚)", 
+	"Fraction of sorption site available for macropore region (𝑓𝑓)", 
+	"Fraction of sorption site available for mesopore region (𝑓𝑠)",	
+	"Fraction of sorption site available for immobile region (𝑓𝑖𝑚)",
+	"Equilibrium sorption coefficient in macropore region (𝐾𝑓)", 
+	"Equilibrium sorption coefficient in mesopore region (𝐾𝑠)", 
+	"Equilibrium sorption coefficient in micropore region (𝐾𝑖𝑚)", 
+	"Rate-limited sorbed coefficient in macropore region (𝑘𝑓)", 
+	"Rate-limited sorbed coefficient in mesopore region (𝑘𝑠)", 
+	"Rate-limited sorbed coefficient in micropore region (𝑘𝑖𝑚)", 
+	"Mesopore seepage velocity (𝑞𝑠 )", 
+	"Macropore seepage velocity (𝑞𝑓 )",
+	"Solute mass transfer rate b/w meso-micropore (ωim)", 
+	"Solute mass transfer rate b/w meso-macropore (ωsf)", 
+	"Dispersivity (å𝐿 )"
+]
+
+
+askValuesALL = []
+
+
+
+
+
+
+
+
+
 
 
 
@@ -54,23 +246,21 @@ def getContent(fileName, sep = None):
 	return content.split(sep)
 
 
-def saveContent(newContent, fileName):
+def saveContent(newContent, fileName, valuesToUpdate):
 	oldContent = getContent(fileName, '\n')
-
 	file = open(fileName, 'w') 
-	
-	j = 0
+
+	valueNames = valuesNamesArr[int(fileName[3]) - 1]
+
+	vi = 0
 	for line in oldContent:
-
 		values = line.split(' ')
-
-		if j < len(newContent):
+		if vi < len(valueNames):
 			for i in range(len(values)):
-				values[i] = newContent[j].get()
-				j = j + 1
-
+				if valueNames[vi] in valuesToUpdate:
+					values[i] = newContent[valuesToUpdate.index(valueNames[vi])].get()
+				vi = vi + 1
 		file.write(" ".join(values) + "\n")
-
 	file.close()
 
 
@@ -107,7 +297,7 @@ def openHelpWindow():
 	helpWindow.mainloop()
 
 
-def guessSave(wind):
+def guessSave():
 	file_name = 'in_1.dat'
 	text_file = open(file_name, 'r') 
 	content = text_file.read()
@@ -144,8 +334,7 @@ def guessSave(wind):
 
 	for i in range(1,cnt+1):
 		newFile.write("l1 (o"+str(i)+")19:26")
-		if(i != cnt):
-			newFile.write("\n")
+		newFile.write("\n")
 	newFile.close()
     # (oi) is the observation point and it should go up to max. observation time steps
 
@@ -154,11 +343,10 @@ def guessSave(wind):
 	newFile = open("measure.obf", 'w') 
 # Saving experimental data from in_1.dat in measure.obf corresponding to observation
 # number
-	for i in range(6,6+cnt):
+	for i in range(6,len(content)-1):
 		currobn = i-5
 		newFile.write("o"+str(currobn)+" "+content[i])
-		if(i != cnt+5):
-			newFile.write("\n")
+		newFile.write("\n")
 
 	newFile.close()
 	os.system('pestgen test in_1.par measure.obf')
@@ -180,19 +368,16 @@ def guessSave(wind):
 	os.system('pestchek test')
 	os.system('pest test')
 
-	wind.destroy()
+
 
 def openGuessWindow():
 	window = Tk()
 	window.title("Guess Window")
 	window.geometry("300x350")
 
-
 	global entries
 	entries = []
 	Label(window, text = " ").grid(row = 0)
-	# Label(window, text = "Fields not filled would be considered Determined").grid(row = 0)
-
 	for i in range(5):
 		Label(window, text = valuesNames[i]).grid(row = 2*i + 1)
 		entry = Entry(window)
@@ -200,60 +385,38 @@ def openGuessWindow():
 		entries.append(entry)
 		Label(window, text = " ").grid(row = 2*i + 2)
 
-
-	Button(window, text="Save", command = lambda : guessSave(window)).grid(row = 13, column = 1)
-
-	window.mainloop()
-
-
-
-def estimateWindow():
-
-	window = tk.ThemedTk()
-	window.get_themes()
-	window.set_theme("radiance")
-	window.geometry("450x420")
-
-
-	guessButton = Button(window, text = "Guess Window", command = openGuessWindow)
-	guessButton.pack(expand = YES)
-	# guessButton.grid(row = 1, column = 2)
-
-	TableButton = Button(window, text = "K-L information statistics", command = tableKLStatistics)
-	TableButton.pack(expand = YES)
-
-	# TableButton.grid(row = 2, column = 2)
-
-	TableButton1 = Button(window, text = "Optimisation Results", command = tableParameterEstimation)
-	TableButton1.pack(expand = YES)
-
-	# TableButton1.grid(row = 3, column = 2)
-	PlotButton = Button(window, text = "Plot", command = GraphFunction)
-	PlotButton.pack(expand=YES)
+	Button(window, text="Save", command = guessSave).grid(row = 12, column = 1)
 
 	window.mainloop()
+
+
+
+
+
 
 
 def openWindow(header, isPE = False):
 	def save():
-		saveContent(fileEntries[0], "in_1.dat")
-		saveContent(fileEntries[1], "in_2.dat")
-		saveContent(fileEntries[2], "in_3.dat")
+		saveContent(fileEntries[0], "in_1.dat", valuesName1)
+		saveContent(fileEntries[1], "in_2.dat", valuesName2)
+		saveContent(fileEntries[2], "in_3.dat", valuesName3)
 
 
 	window = tk.ThemedTk()
 	window.get_themes()
 	window.set_theme("radiance")
 	window.title(header)
+
+
+	
 	# parameters;
 
 	rowNo = 0
 	content = [getContent("in_1.dat"), getContent("in_2.dat"), getContent("in_3.dat")]
 	fileEntries = []
-	valuesNamesArr = [valuesName1, valuesName2, valuesName3]
 
 	for i in range(len(valuesNamesArr)):
-		# print(i, valuesNamesArr[i])
+		print(i, valuesNamesArr[i])
 		fileEntries.append([])
 		for j in range(len(valuesNamesArr[i])):
 			Label(window, text = valuesNamesArr[i][j]).grid(row = rowNo//2, column = 0 + 2*(rowNo%2))
@@ -267,18 +430,94 @@ def openWindow(header, isPE = False):
 	Button(window, text = 'Save', command = save).grid(row = rowNo, column = 0)
 
 
-	if(isPE==False):
-		PlotButton = Button(window, text = "Plot", command = GraphFunction)
-		PlotButton.grid(row = rowNo, column = 1)
+	run_button = Button(window, text="Run", command=run_txt)
+	run_button.grid(row = rowNo, column = 1)
 
-		run_button = Button(window, text="Run", command=run_txt)
-		run_button.grid(row = rowNo, column = 2)
-	else:
-		Estimate = Button(window, text = "Estimate Parameters", command = estimateWindow)
-		Estimate.grid(row = rowNo,column = 2)
+	PlotButton = Button(window, text = "Plot", command = GraphFunction)
+	PlotButton.grid(row = rowNo, column = 2)
 
-	root.destroy()
+	rowNo = rowNo + 1
+
+
 	window.mainloop()
+
+
+
+
+def entriesWindow(header, defaultValues, askValues):
+	top = Tk()
+
+	def save():
+		saveContent(fileEntries, "in_1.dat", defaultValues + askValues)
+		saveContent(fileEntries, "in_2.dat", defaultValues + askValues)
+		saveContent(fileEntries, "in_3.dat", defaultValues + askValues)
+		top.destroy()
+
+
+	fileEntries = []
+	for i in range(len(defaultValues)):
+		Label(top, text = defaultValues[i]).grid(row = i, column = 0)
+		entry = Entry(top)
+		entry.insert(END, "1E-16")
+		entry.grid(row = i, column = 1)
+		fileEntries.append(entry)
+
+	for i in range(len(askValues)):
+		Label(top, text = askValues[i]).grid(row = i + len(defaultValues), column = 0)
+		entry = Entry(top)
+		entry.grid(row = i + len(defaultValues), column = 1)
+		fileEntries.append(entry)
+
+	Button(top, text = 'Save', command = save).grid()
+
+
+
+
+def parameterEstimationWindow():
+	window = tk.ThemedTk()
+	window.get_themes()
+	window.set_theme("radiance")
+	window.title("Parameter Estimation Window")
+	window.geometry("600x400")
+
+	headers = [
+		"Equilibrium solute transport model (ADE)", 
+		"Dual-Porosity Single Permeability Models (MIM)", 
+		"Dual porosity single permeability two site model (MPNE)", 
+		"Single porosity dual permeability two site model (DADE)", 
+		"Triple porosity dual permeability three site model"
+	]
+
+	
+	Button(window, text = headers[0], command = lambda : entriesWindow(headers[0], defaultValuesADE, askValuesADE)).pack(expand = YES)
+	Button(window, text = headers[1], command = lambda : entriesWindow(headers[1], defaultValuesMIM, askValuesMIM)).pack(expand = YES)
+	Button(window, text = headers[2], command = lambda : entriesWindow(headers[2], defaultValuesMPNE, askValuesMPNE)).pack(expand = YES)
+	Button(window, text = headers[3], command = lambda : entriesWindow(headers[3], defaultValuesDADE, askValuesDADE)).pack(expand = YES)
+	Button(window, text = headers[4], command = lambda : entriesWindow(headers[4], defaultValuesALL, askValuesALL)).pack(expand = YES)
+
+
+	run_button = Button(window, text="Run", command=run_txt)
+	run_button.pack(expand = YES)
+
+	plotButton = Button(window, text = "Plot", command = GraphFunction)
+	plotButton.pack(expand = YES)
+
+	guessButton = Button(window, text = "Guess Window", command = openGuessWindow)
+	guessButton.pack(expand = YES)
+
+	tableButton = Button(window, text = "K-L information statistics", command = tableKLStatistics)
+	tableButton.pack(expand = YES)
+
+	tableButton1 = Button(window, text = "Otimisation Results", command = tableParameterEstimation)
+	tableButton1.pack(expand = YES)
+
+	window.mainloop()
+
+
+
+
+
+
 
 
 def render_mpl_table(data, col_width=3.0, row_height=0.75, font_size=14,
@@ -358,6 +597,7 @@ def tableParameterEstimation():
 	col2 = []
 	col3 = []
 	col4 = []
+
 	for line in f: 
 		lines.append(line)
 	start = lines.index('                            OPTIMISATION RESULTS\n')
@@ -376,31 +616,16 @@ def tableParameterEstimation():
 	render_mpl_table(df, header_columns=0, col_width=3.0)
 	
 	img2 =Image.open("tableKLStatistics.png")
-	img2=img2.resize((1000,200 + 50*change),Image.ANTIALIAS)
+	img2=img2.resize((1000,500),Image.ANTIALIAS)
 	img2= ImageTk.PhotoImage(img2)
 	panel.config(image=img2)
 	panel.image = img2
 	window.mainloop()
 
-#logo display
-image = Image.open("./logo.png")
-image = image.resize((round(image.size[0]*0.5), round(image.size[1]*0.5)))
-logo = ImageTk.PhotoImage(image)
-panel = Label(root, image = logo)
-panel.pack(side="left", fill = "x")
-panel.place(x=0,y=0)
-
-#heading
-heading = Label(root, text = "GUI for Fortran Programs", font = "tkDefaultFont 12 bold")
-heading.pack(side = "top")
-heading.place(x=190,y=50)
-
 editButton = Button(root, text = "Forward modelling", command = lambda : openWindow("Forward modelling"))
-editButton.pack(side = "top",fill="x")
-editButton.place(x=130,y=200)
+editButton.pack(expand = YES)
 
-parameterEstimationButton = Button(root, text = "Parameter estimation", command = lambda : openWindow("Parameter estimation", True))
-parameterEstimationButton.pack(side="top", fill="x")
-parameterEstimationButton.place(x=120,y=250)
+parameterEstimationButton = Button(root, text = "Parameter estimation", command = parameterEstimationWindow)
+parameterEstimationButton.pack(expand = YES)
 
 root.mainloop()
